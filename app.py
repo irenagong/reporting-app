@@ -19,7 +19,7 @@ def inject_now():
 
 # Configurations
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SECRET_KEY'] = 'your-secret-key'  # Replace this in production!
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-for-local')
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
