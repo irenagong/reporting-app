@@ -1,0 +1,8 @@
+Date,Customer,Product,Quantity,Price
+2024-04-01,Alice,Widget A,2,25.00
+2024-04-01,Bob,Widget B,1,40.00
+2024-04-02,Alice,Widget A,1,25.00
+2024-04-03,Carol,Widget C,3,15.00
+2024-04-04,David,Widget A,2,25.00
+2024-04-04,Eve,Widget B,2,40.00
+2024-04-05,Bob,Widget C,1,15.00
