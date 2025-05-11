@@ -10,6 +10,8 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import flash
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 @app.context_processor
@@ -176,13 +178,17 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        # secret = request.form['secret']
+
+        # if secret != os.environ.get('REGISTRATION_CODE'):
+        #     flash("Invalid registration code.")
+        #     return redirect('/register')
 
         if User.query.filter_by(username=username).first():
             flash('Username already exists.')
             return redirect('/register')
 
         hashed_pw = generate_password_hash(password, method='pbkdf2:sha256')
-
         new_user = User(username=username, password=hashed_pw)
         db.session.add(new_user)
         db.session.commit()
@@ -211,6 +217,23 @@ def login():
 def logout():
     logout_user()
     return redirect('/login')
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    if request.method == 'POST':
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        message = request.form.get('message', '').strip()
+
+        if not message:
+            flash('Please enter your feedback message.')
+            return redirect('/about')
+
+        # TODO: Store or email — for now just flash
+        flash("Thank you for your feedback!")
+        return redirect('/about')
+
+    return render_template('about.html')
 
 @app.route('/my-uploads')
 @login_required

@@ -31,7 +31,10 @@
         {% endblock %}
     </div>
     <footer class="text-center text-muted py-3 mt-5 border-top">
-        <small>© {{ current_year }} Reporting App. Built with ❤️ by You.</small>
+        <small class="d-block mt-3">
+            <a href="{{ url_for('about') }}" class="text-muted text-decoration-none">About & Feedback</a>
+        </small>
+        <small>© {{ current_year }} Reporting App.</small>
     </footer>
 </body>
 </html>

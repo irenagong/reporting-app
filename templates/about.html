@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>About This App</h2>
+    <p>It’s free to use for now — designed to help people explore their data easily.</p>
+    <p>If you have ideas or questions, please leave a message below. I’d love to hear from you.</p>
+
+    <hr class="my-4">
+    <h4>Send Feedback</h4>
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Your Name (optional)</label>
+            <input type="text" class="form-control" name="name" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Your Email (optional)</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Your Feedback</label>
+            <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-success mt-4">
+            {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
